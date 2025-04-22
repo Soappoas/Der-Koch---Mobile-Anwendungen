@@ -1,32 +1,20 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 
 export default function HomeScreen() {
     return (
-        <View style={styles.container}>
-            <View style={styles.view1} />
-            <View style={styles.view2} />
-            <View style={styles.view3} />
-
-        </View>
+    <SafeAreaView style={styles.container}>
+        <Text>Hello World</Text>
+    </SafeAreaView>
     )
 }
 
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+      flex: 1,
+      backgroundColor: '#d96b63',
+      alignItems: 'center',
+      justifyContent: 'center',
     },
-    view1: {
-        flex: 1,
-        backgroundColor: 'red',
-    },
-    view2: {
-        flex: 1,
-        backgroundColor: 'green',
-    },
-    view3: {
-        flex: 1,
-        backgroundColor: 'blue',
-    },
-});
+  });
