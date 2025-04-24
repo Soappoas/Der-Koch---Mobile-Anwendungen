@@ -7,11 +7,22 @@ import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native'
 import * as ImagePicker from 'expo-image-picker';
 import { Image } from 'react-native';
 
-export default function addRecipe() {
+import { useRecipes } from '../context/RecipeContext';
+
+
+export default function AddRecipe() {
   /* Hier sind die Statese initialisiert, wichtig useState einzeln zu importieren */
+  const { addRecipe } = useRecipes(); //test
   const [name, setName] = useState('');
   const [description, setDescription] =  useState('');
   const [image, setImage] = useState<string | null>(null); /* wir starten mit null also keinem image, deswegen hinter den klammern*/
+
+  //test
+  const handleSave = () => {
+    addRecipe({ name, description, image: null });
+    setName('');
+    setDescription('');
+  };
 
   /* Funktion um image zu picken aus der Gallerie */
   const pickImage = async () => {
@@ -29,6 +40,14 @@ export default function addRecipe() {
   if (!result.canceled) {
     setImage(result.assets[0].uri); // speichere Bild-URI im State
   }
+};
+
+const handleAddRecipe = () => {
+  //if (!name || !description) return;
+  addRecipe({ name, description, image });
+  setName('');
+  setDescription('');
+  setImage(null);
 };
 
   return (
@@ -66,7 +85,7 @@ export default function addRecipe() {
       />
 )}
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleAddRecipe}>
        <Text style={{ color: 'black', fontWeight: 'bold' }}>Save Recipe</Text>
       </TouchableOpacity>
 

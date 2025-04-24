@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState, useContext } from 'react';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
@@ -6,6 +6,25 @@ import { Pressable } from 'react-native';
 import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
+
+//test
+import { RecipeContext } from '../context/RecipeContext';
+
+
+export default function Layout() {
+  const [recipes, setRecipes] = useState<any[]>([]);
+
+  const addRecipe = (recipe: any) => {
+    setRecipes([...recipes, recipe]);
+  };
+
+  return (
+    <RecipeContext.Provider value={{ recipes, addRecipe }}>
+      <TabLayout />
+    </RecipeContext.Provider>
+  );
+}
+
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -15,7 +34,7 @@ function TabBarIcon(props: {
   return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
 }
 
-export default function TabLayout() {
+function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (

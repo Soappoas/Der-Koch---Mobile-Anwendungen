@@ -1,46 +1,68 @@
-import { StyleSheet } from 'react-native';
+import React from 'react';
+import { View, Text, FlatList, Image, StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
-import React, { createContext, useContext, useState } from 'react';
-import { View, Text } from 'react-native';
+// holt die dateien aus dem zentralen Speicher, der in _layout.tsx drin ist
+import { useRecipes } from '../context/RecipeContext';
 
+export default function RecipeListScreen() {
+  const { recipes } = useRecipes();  
 
-// das ist der zentrale speicher platz von react contect (alle components können darauf zurückgreifen, mit useConext)
-const RecipeContext = createContext<any>(null);
-
-
-export default function RecipeList(props: any) {
-  const [recipes, setRecipes] = useState<any[]>([]); // leeres Array
-  const addRecipe = (recipe: any) => {
-    // baut neues array
-    setRecipes([...recipes, recipe]);
-  };
-
-  
   return (
-    <RecipeContext.Provider value={{ recipes, addRecipe }}>
-      {props.children}
-    </RecipeContext.Provider>
+    <View style={styles.container}>
+    <Text style={styles.title}>My Recipes</Text>
+
+    <FlatList
+      data={recipes}
+      renderItem={({ item }: { item: any }) => (
+        <View style={styles.card}>
+          <Image source={{ uri: item.image }} style={styles.image} />
+          <View style={{ flex: 1 }}>
+            <Text style={styles.name}>{item.name}</Text>
+            <Text style={styles.description}>{item.description}</Text>
+          </View>
+        </View>
+      )}
+      keyExtractor={(_, index) => index.toString()}
+    />
+  </View>
   );
 }
 
-export function useRecipes() {
-  return useContext(RecipeContext);
-}
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: 'black',
+    padding: 20,
   },
   title: {
-    fontSize: 20,
+    color: 'white',
+    fontSize: 22,
     fontWeight: 'bold',
+    marginBottom: 20,
+    textAlign: 'center',
   },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: '80%',
+  card: {
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    padding: 10,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  image: {
+    width: 60,
+    height: 60,
+    borderRadius: 8,
+    marginRight: 10,
+  },
+  name: {
+    fontWeight: 'bold',
+    marginBottom: 4,
+  },
+  description: {
+    color: '#333',
   },
 });
