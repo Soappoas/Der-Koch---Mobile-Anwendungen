@@ -3,10 +3,6 @@ import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
 import { Pressable } from 'react-native';
 
-import Colors from '@/constants/Colors';
-import { useColorScheme } from '@/components/useColorScheme';
-import { useClientOnlyValue } from '@/components/useClientOnlyValue';
-
 //test
 import { RecipeContext } from '../context/RecipeContext';
 
@@ -35,16 +31,13 @@ function TabBarIcon(props: {
 }
 
 function TabLayout() {
-  const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: '#c53525',
         tabBarInactiveTintColor: '#a6a6a6',
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
+        headerShown: true,
       }}>
       
       <Tabs.Screen

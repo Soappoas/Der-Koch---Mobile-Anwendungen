@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
-import EditScreenInfo from '@/components/EditScreenInfo';
 /* import { Text } from '@/components/Themed';*/
 import {View, Text, TextInput, ScrollView, TouchableOpacity} from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
