@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import { Text } from '@/components/Themed';
 import {TextInput, ScrollView} from 'react-native';
 
 export default function addRecipe() {
@@ -20,16 +20,25 @@ export default function addRecipe() {
       value={name}
       onChangeText={setName}
       />
+
+      <TextInput
+      style={[styles.input, styles.description]}
+      placeholder="Description"
+      value={descripton}
+      onChangeText={setDescription}
+      multiline
+      />
+
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  /** adjust cotainer todo */
   container: {
-    flex: 1,
+    flexGrow: 1, /** gleiche wie flex bei View, nutzt ganzen verfügbaren Platz */
+    backgroundColor: 'black',
+    padding: 10,
     alignItems: 'center',
-    justifyContent: 'center',
   },
   title: {
     fontSize: 20,
@@ -41,6 +50,10 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     marginBottom: 10,
+  },
+  description: {
+    height: 100,
+    textAlignVertical: 'top',
   },
   separator: {
     marginVertical: 30,

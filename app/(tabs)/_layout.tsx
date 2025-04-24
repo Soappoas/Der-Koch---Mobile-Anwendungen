@@ -38,7 +38,7 @@ export default function TabLayout() {
         name="addRecipe"
         options={{
           title: 'Add Recipe',
-          tabBarIcon: ({ color }) => <TabBarIcon name="plus-circle" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="plus-circle" color={color}/>,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -52,7 +52,7 @@ export default function TabLayout() {
                 )}
               </Pressable>
             </Link>
-          ),
+          ), 
         }}
       />
       <Tabs.Screen
