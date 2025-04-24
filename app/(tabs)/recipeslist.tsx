@@ -1,16 +1,31 @@
 import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import React, { createContext, useContext, useState } from 'react';
+import { View, Text } from 'react-native';
 
-export default function TabTwoScreen() {
+
+// das ist der zentrale speicher platz von react contect (alle components können darauf zurückgreifen, mit useConext)
+const RecipeContext = createContext<any>(null);
+
+
+export default function RecipeList(props: any) {
+  const [recipes, setRecipes] = useState<any[]>([]); // leeres Array
+  const addRecipe = (recipe: any) => {
+    // baut neues array
+    setRecipes([...recipes, recipe]);
+  };
+
+  
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-    </View>
+    <RecipeContext.Provider value={{ recipes, addRecipe }}>
+      {props.children}
+    </RecipeContext.Provider>
   );
+}
+
+export function useRecipes() {
+  return useContext(RecipeContext);
 }
 
 const styles = StyleSheet.create({
