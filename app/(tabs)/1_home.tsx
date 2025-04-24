@@ -14,6 +14,7 @@ export default function HomeScreen() {
             style={styles.image}
             resizeMode="cover"
         />
+        <Text style={styles.body}>Here you can find and collect the best recipes {"\n"} for your home made meals. Bon appétit!</Text>
 
     </SafeAreaView>
     )
@@ -28,7 +29,7 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
     },
     header: {
-        paddingTop: 50,
+        paddingTop: 30,
         paddingBottom: 10,
         width: '100%',
         borderBottomColor: 'white',
@@ -48,7 +49,13 @@ const styles = StyleSheet.create({
     },
     image: {
         width: '90%',
-        height: 400,
+        height: 480,
         borderRadius: 12,
     },
+    body: {
+        fontSize: 14,
+        color: 'white',
+        marginVertical: 20,
+        textAlign: 'center',
+    }
   });

@@ -67,7 +67,7 @@ const handleAddRecipe = () => {
       />
 
       <TextInput
-      style={[styles.input, styles.description]}
+      style={[styles.description, styles.input]}
       placeholder="Description"
       value={description}
       onChangeText={setDescription}
@@ -81,7 +81,7 @@ const handleAddRecipe = () => {
       {image && (
       <Image
        source={{ uri: image }}
-       style={{ width: 200, height: 200, borderRadius: 10, marginTop: 20 }}
+       style={{ width: 200, height: 200, borderRadius: 10, marginTop: 5, marginBottom: 5}}
       />
 )}
 
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   description: {
-    height: 100,
+    height: 200,
     textAlignVertical: 'top',
   },
   link: {
@@ -129,7 +129,7 @@ const styles = StyleSheet.create({
     marginVertical: 10,
   },
   header: {
-    paddingTop: 50,
+    paddingTop: 10,
     paddingBottom: 10,
     width: '100%',
     borderBottomColor: 'white',
