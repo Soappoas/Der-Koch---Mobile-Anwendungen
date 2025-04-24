@@ -11,6 +11,25 @@ export default function addRecipe() {
   /* Hier sind die Statese initialisiert, wichtig useState einzeln zu importieren */
   const [name, setName] = useState('');
   const [description, setDescription] =  useState('');
+  const [image, setImage] = useState<string | null>(null); /* wir starten mit null also keinem image, deswegen hinter den klammern*/
+
+  /* Funktion um image zu picken aus der Gallerie */
+  const pickImage = async () => {
+    const permissionResult = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    if (!permissionResult.granted) {
+    alert('It is required to have acess to the images!');
+    return;
+  }
+
+  const result = await ImagePicker.launchImageLibraryAsync({
+    mediaTypes: ['images'],
+    quality: 1,
+  });
+
+  if (!result.canceled) {
+    setImage(result.assets[0].uri); // speichere Bild-URI im State
+  }
+};
 
   return (
     /* nicht einfach view sondern ScrollView damit es scrollbar ist */
@@ -36,9 +55,16 @@ export default function addRecipe() {
       multiline
       />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={pickImage}>
         <Text style={{ color: 'black', fontWeight: 'bold' }}>Add Image</Text>
       </TouchableOpacity>
+
+      {image && (
+      <Image
+       source={{ uri: image }}
+       style={{ width: 200, height: 200, borderRadius: 10, marginTop: 20 }}
+      />
+)}
 
       <TouchableOpacity style={styles.button}>
        <Text style={{ color: 'black', fontWeight: 'bold' }}>Save Recipe</Text>
