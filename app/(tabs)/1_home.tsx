@@ -14,7 +14,7 @@ export default function HomeScreen() {
             style={styles.image}
             resizeMode="cover"
         />
-        <Text style={styles.body}>Here you can find and collect the best recipes {"\n"} for your home made meals. Bon appétit!</Text>
+        <Text style={styles.body}>Here you can find and collect the best recipes {"\n"}for your home made meals. Bon appétit!</Text>
 
     </SafeAreaView>
     )

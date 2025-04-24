@@ -9,8 +9,19 @@ export default function RecipeListScreen() {
 
   return (
     <View style={styles.container}>
-    <Text style={styles.title}>My Recipes</Text>
+      <View></View>
+    <Text style={[styles.title, styles.titleText]}>My Recipes</Text>
 
+    {recipes.length === 0 ? (
+        <View style={styles.placeholderContainer}>
+          <Image
+            source={require('/Users/sophiabuettgen/test/assets/images/Mous.png')}
+            style={styles.placeholderImage}
+            resizeMode="contain"
+          />
+          <Text style={styles.placeholderText}>No recipes yet. Add your first one {"\n"}to feed the mouse!</Text>
+        </View>
+      ) : (
     <FlatList
       data={recipes}
       renderItem={({ item }: { item: any }) => (
@@ -24,6 +35,7 @@ export default function RecipeListScreen() {
       )}
       keyExtractor={(_, index) => index.toString()}
     />
+  )}
   </View>
   );
 }
@@ -34,13 +46,18 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    padding: 20,
   },
   title: {
+    paddingTop: 30,
+    paddingBottom: 10,
+    width: '100%',
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
+    alignItems: 'center',
+  },
+  titleText: {
     color: 'white',
-    fontSize: 22,
-    fontWeight: 'bold',
-    marginBottom: 20,
+    fontSize: 18,
     textAlign: 'center',
   },
   card: {
@@ -65,4 +82,22 @@ const styles = StyleSheet.create({
   description: {
     color: '#333',
   },
+  placeholderText: {
+    fontSize: 14,
+    color: 'white',
+    marginVertical: 50,
+    textAlign: 'center',
+    marginTop: 12,
+  },
+  placeholderImage: {
+    width: '90%',
+    borderRadius: 12,
+    flex: 1,
+  },
+  placeholderContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 16,
+  }
 });

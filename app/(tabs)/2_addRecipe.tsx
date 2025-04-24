@@ -97,11 +97,10 @@ const styles = StyleSheet.create({
   container: {
     flexGrow: 1,
     backgroundColor: 'black',
-    padding: 10,
     alignItems: 'center',
   },
   title: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
   },
   input: {
