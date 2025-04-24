@@ -35,7 +35,7 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="addRecipe"
+        name="addrecipe"
         options={{
           title: 'Add Recipe',
           tabBarIcon: ({ color }) => <TabBarIcon name="plus-circle" color={color}/>,
